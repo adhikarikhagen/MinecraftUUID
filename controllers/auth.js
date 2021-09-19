@@ -3,7 +3,7 @@ const { response, json } = require("express");
 const AIC_URL = "https://api.mojang.com/users/profiles/minecraft";
 
 const login = async (req, res = response) => {
-    const { username } = req.params;
+    const { username } = req.query;
     try {
         const resp = await fetch(
             `${AIC_URL}/${username}`,
@@ -14,6 +14,7 @@ const login = async (req, res = response) => {
                 },
             }
         );
+        console.log(username)
 
         if (resp.status >= 400) {
             throw new Error("Bad response from server");
