@@ -16,10 +16,9 @@ class Server {
   }
 
   middlewares() {
-    this.app.use(cors({
-      origin: ['https://events.atlassian.com/bigbash21/redemption',]
-    }));
+    this.app.use(cors());
     this.app.use(express.json());
+    this.app.options('*', cors());
 
     // Pick up React index.html file
 
