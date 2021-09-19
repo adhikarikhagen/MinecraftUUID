@@ -1,12 +1,12 @@
 const fetch = require("cross-fetch");
 const { response, json } = require("express");
-const AIC_URL = "https://api.mojang.com/users/profiles/minecraft/bw_minecraft";
+const AIC_URL = "https://api.mojang.com/users/profiles/minecraft";
 
 const login = async (req, res = response) => {
     const { username } = req.params;
     try {
         const resp = await fetch(
-            `${AIC_URL}`,
+            `${AIC_URL}/${username}`,
             {
                 method: "GET",
                 headers: {
