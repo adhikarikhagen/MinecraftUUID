@@ -19,10 +19,13 @@ const login = async (req, res = response) => {
             const data = await resp.json();
             res.json({ data });
         }
+        else if (resp.status === 204) {
+            res.status(404).send('Sorry, username does not exist');
+        }
         if (resp.status >= 400) {
             throw new Error("Bad response from server");
         }
-        res.json({ name: username, id: "Not found" })
+
 
     } catch (err) {
         console.error(err);
