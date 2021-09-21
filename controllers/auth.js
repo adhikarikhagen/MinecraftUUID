@@ -15,18 +15,15 @@ const login = async (req, res = response) => {
             }
         );
         console.log(username)
-
+        if (resp.status === 200) {
+            const data = await resp.json();
+            res.json({ data });
+        }
         if (resp.status >= 400) {
             throw new Error("Bad response from server");
         }
+        res.json({ name: username, id: "Not found" })
 
-        const data = await resp.json();
-        // const dataWithUrls = data.map((image) => ({
-        //     ...image,
-        //     image_url: `https://www.artic.edu/iiif/2/${image.image_id}/full/843,/0/default.jpg`,
-        // }));
-
-        res.json({ data });
     } catch (err) {
         console.error(err);
     }
